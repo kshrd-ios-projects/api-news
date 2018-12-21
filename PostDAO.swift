@@ -13,7 +13,7 @@ class PostDAO {
     static var posts = [Post]()
     
     func fetchData(resquestUrl: String, completion: @escaping ([Post]) -> Void) {
-        
+        PostDAO.posts.removeAll()
         Alamofire.request(resquestUrl).responseJSON { response in
             if let JSON = response.result.value {
                 
@@ -29,5 +29,6 @@ class PostDAO {
             }
         }
     }
+   
     
 }

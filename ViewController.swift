@@ -30,29 +30,18 @@ class ViewController: UIViewController {
     var posts = [Post]()
     var postData: Post?
     
-    private func refresher() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         
-        // Add Refresh Control to Table View
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
         fetchData()
-        refresher()
-        
         
         tableView.register(UINib.init(nibName: "PostStyleCell", bundle: nil), forCellReuseIdentifier: customCellId)
     }
-    
+ 
     @objc func fetchData() {
         post.fetchData(resquestUrl: requestUrl) { post in
             self.posts = post
@@ -74,7 +63,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellId, for: indexPath) as! PostStyleCell
         let post = posts[indexPath.row]
-        let imgUrl = post.imageUrl ?? "http://placehold.jp/150x100.png"
+        let imgUrl = post.imageUrl ?? "http://api-ams.me:80/image-thumbnails/thumbnail-17a62de1-cae9-4c8d-9421-a03c3ce281bb.jpg"
         if let url = URL(string: imgUrl) {
             let resource = ImageResource(downloadURL: url)
             cell.imageVIew.kf.setImage(with: resource, options: [.transition(.fade(0.2))])
@@ -121,10 +110,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.performSegue(withIdentifier: "editFormSegue", sender: self)
             AddEditViewController.post = self.posts[indexPath.row]
         })
-//        let cssCode: String = "fa fa-address-book"
-//        modifyAction.image = UIImage.fontAwesomeIcon(code: cssCode, style: .solid, textColor: .white, size: CGSize(width: 50, height: 50))
-        modifyAction.image = UIImage.fontAwesomeIcon(name: .addressBook, style: .brands, textColor: .white, size: CGSize(width: 50, height: 50))
-        modifyAction.backgroundColor = .blue
+        let cssCode: String = "fa fa-address-book"
+        modifyAction.image = UIImage.fontAwesomeIcon(code: cssCode, style: .solid, textColor: .white, size: CGSize(width: 50, height: 50))
+//        modifyAction.image = UIImage.fontAwesomeIcon(name: .addressBook, style: .brands, textColor: .white, size: CGSize(width: 50, height: 50))
+//        modifyAction.backgroundColor = .blue
         
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }

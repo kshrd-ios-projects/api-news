@@ -65,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tfm-pi-aJm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tfm-pi-aJm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="250"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5zM-PS-qGg">
@@ -75,31 +75,43 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1g3-wb-4PH">
-                                <rect key="frame" x="16" y="360" width="343" height="299"/>
+                                <rect key="frame" x="16" y="360" width="343" height="208"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ByA-zu-EMe">
+                                <rect key="frame" x="16" y="598" width="343" height="30"/>
+                                <state key="normal" title="Update Post"/>
+                                <connections>
+                                    <action selector="updatePost:" destination="eCL-Sb-sdD" eventType="touchUpInside" id="8eM-9g-lxj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tfm-pi-aJm" firstAttribute="top" secondItem="e73-oi-7lQ" secondAttribute="top" id="0TS-1H-EGP"/>
-                            <constraint firstItem="e73-oi-7lQ" firstAttribute="bottom" secondItem="1g3-wb-4PH" secondAttribute="bottom" constant="8" id="4Yz-zB-XtX"/>
                             <constraint firstItem="1g3-wb-4PH" firstAttribute="top" secondItem="e73-oi-7lQ" secondAttribute="top" constant="296" id="5TQ-Y5-fC6"/>
                             <constraint firstItem="tfm-pi-aJm" firstAttribute="leading" secondItem="e73-oi-7lQ" secondAttribute="leading" id="GKD-Hg-HGj"/>
                             <constraint firstItem="1g3-wb-4PH" firstAttribute="top" secondItem="5zM-PS-qGg" secondAttribute="bottom" constant="8" id="Kjh-Gt-i8z"/>
                             <constraint firstItem="e73-oi-7lQ" firstAttribute="trailing" secondItem="1g3-wb-4PH" secondAttribute="trailing" constant="16" id="NdN-pJ-07j"/>
+                            <constraint firstItem="e73-oi-7lQ" firstAttribute="bottom" secondItem="ByA-zu-EMe" secondAttribute="bottom" constant="39" id="QZT-jR-8yV"/>
+                            <constraint firstItem="ByA-zu-EMe" firstAttribute="leading" secondItem="e73-oi-7lQ" secondAttribute="leading" constant="16" id="Thl-3L-hi9"/>
+                            <constraint firstItem="e73-oi-7lQ" firstAttribute="trailing" secondItem="ByA-zu-EMe" secondAttribute="trailing" constant="16" id="Ts8-ak-Jf9"/>
                             <constraint firstItem="5zM-PS-qGg" firstAttribute="leading" secondItem="e73-oi-7lQ" secondAttribute="leading" constant="16" id="VA4-4t-VP4"/>
                             <constraint firstItem="1g3-wb-4PH" firstAttribute="leading" secondItem="e73-oi-7lQ" secondAttribute="leading" constant="16" id="aK1-Ea-Tgp"/>
                             <constraint firstItem="5zM-PS-qGg" firstAttribute="top" secondItem="tfm-pi-aJm" secondAttribute="bottom" constant="8" id="dcR-9z-768"/>
                             <constraint firstItem="e73-oi-7lQ" firstAttribute="trailing" secondItem="tfm-pi-aJm" secondAttribute="trailing" id="n4b-Wa-re8"/>
                             <constraint firstItem="e73-oi-7lQ" firstAttribute="trailing" secondItem="5zM-PS-qGg" secondAttribute="trailing" constant="16" id="nGL-Vf-JVz"/>
+                            <constraint firstItem="ByA-zu-EMe" firstAttribute="top" secondItem="1g3-wb-4PH" secondAttribute="bottom" constant="30" id="zaz-Dj-ZI2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e73-oi-7lQ"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionTextView" destination="1g3-wb-4PH" id="Yfi-up-igu"/>
                         <outlet property="imageView" destination="tfm-pi-aJm" id="vCA-0K-dov"/>
+                        <outlet property="titleTextField" destination="5zM-PS-qGg" id="WNr-Gp-6Ze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tK3-gk-NcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,6 +195,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="car-b3-jCu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
