@@ -11,7 +11,12 @@ import Kingfisher
 import FontAwesome_swift
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UpdateDelegation {
+
+    func didUpdatePost() {
+        print("delegate run....")
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     let customCellId = "customCellId"
     private let refreshControl = UIRefreshControl()
@@ -107,6 +112,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let modifyAction = UIContextualAction(style: .normal, title:  "Edit", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            AddEditViewController().delegate = self
             self.performSegue(withIdentifier: "editFormSegue", sender: self)
             AddEditViewController.post = self.posts[indexPath.row]
         })

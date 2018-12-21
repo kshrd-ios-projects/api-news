@@ -10,7 +10,12 @@ import UIKit
 import Kingfisher
 import Alamofire
 
+protocol UpdateDelegation: AnyObject {
+    func didUpdatePost()
+}
+
 class AddEditViewController: UIViewController {
+    weak var delegate: UpdateDelegation?
     static var post: Post!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -53,6 +58,7 @@ class AddEditViewController: UIViewController {
                 print(response.result)
             }
             self.navigationController?.popViewController(animated: true)
+            self.delegate?.didUpdatePost()
         }
     }
     
